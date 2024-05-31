@@ -41,7 +41,7 @@ def exp(x: float) -> float:
     return math.exp(x)
 
 def log_back(x: float, d: float) -> float:
-    return d * 1.0 / (x + epsilon)
+    return d / (x + epsilon)
 
 def inv(x: float) -> float:
     return 1.0 / x
@@ -51,6 +51,9 @@ def inv_back(x: float, d: float) -> float:
 
 def relu_back(x: float, d: float) -> float:
     return d if x > 0 else 0.0
+
+def sigmoid_back(x: float, d: float) -> float:
+    return d * math.exp(-x) / ((1 + math.exp(-x)) ** 2)
 
 assert mul(2, 3) == 6
 assert id(3) == 3
@@ -68,6 +71,7 @@ assert is_close(log_back(2, 1), 0.5)
 assert is_close(inv(2), 0.5)
 assert is_close(inv_back(2, 1), -0.25)
 assert relu_back(2, 1) == 1
+assert is_close(sigmoid_back(2, 1), 0.11)
 
 
 

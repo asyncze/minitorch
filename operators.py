@@ -1,5 +1,7 @@
 import math
 
+epsilon = 1e-6
+
 # core mathematical operators
 
 def mul(x: float, y: float) -> float:
@@ -31,8 +33,6 @@ def sigmoid(x: float) -> float:
 
 def relu(x: float) -> float:
     return x if x > 0 else 0.0
-
-epsilon = 1e-6
 
 def log(x: float) -> float:
     return math.log(x + epsilon)

@@ -73,7 +73,7 @@ end
 
 # tests
 
-raise Exception unless mul(3, 4) == 12
+raise Exception unless mul(2, 3) == 6
 raise Exception unless id(3) == 3
 raise Exception unless add(2, 3) == 5
 raise Exception unless neg(3) == -3

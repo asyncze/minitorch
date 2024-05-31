@@ -55,6 +55,14 @@ def relu_back(x: float, d: float) -> float:
 def sigmoid_back(x: float, d: float) -> float:
     return d * math.exp(-x) / ((1 + math.exp(-x)) ** 2)
 
+# higher-order functions
+
+def map(fn):
+    return lambda ls: [fn(x) for x in ls]
+
+def neg_list(ls):
+    return map(neg)(ls)
+
 # tests
 
 assert mul(2, 3) == 6
@@ -74,3 +82,7 @@ assert is_close(inv(2), 0.5)
 assert is_close(inv_back(2, 1), -0.25)
 assert relu_back(2, 1) == 1
 assert is_close(sigmoid_back(2, 1), 0.11)
+
+assert map(neg)([1, 2, 3]) == [-1, -2, -3]
+assert neg_list([1, 2, 3]) == [-1, -2, -3]
+

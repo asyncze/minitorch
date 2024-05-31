@@ -74,6 +74,3 @@ assert is_close(inv(2), 0.5)
 assert is_close(inv_back(2, 1), -0.25)
 assert relu_back(2, 1) == 1
 assert is_close(sigmoid_back(2, 1), 0.11)
-
-
-

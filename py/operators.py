@@ -55,6 +55,8 @@ def relu_back(x: float, d: float) -> float:
 def sigmoid_back(x: float, d: float) -> float:
     return d * math.exp(-x) / ((1 + math.exp(-x)) ** 2)
 
+# tests
+
 assert mul(2, 3) == 6
 assert id(3) == 3
 assert add(2, 3) == 5

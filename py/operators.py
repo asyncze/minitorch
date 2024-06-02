@@ -69,6 +69,15 @@ def map2(fn):
 def add_list(ls1, ls2):
     return map2(add)(ls1, ls2)
 
+def reduce(fn, start):
+    def reduce_fn(ls, fn, start):
+        iterator = iter(ls)
+        for i in iterator:
+            start = fn(start, i)
+        return start
+
+    return lambda ls: reduce_fn(ls, fn, start)
+
 # tests
 
 assert mul(2, 3) == 6
@@ -93,7 +102,7 @@ assert map(neg)([1, 2, 3]) == [-1, -2, -3]
 assert neg_list([1, 2, 3]) == [-1, -2, -3]
 assert map2(add)([1, 2, 3], [4, 5, 6]) == [5, 7, 9]
 assert add_list([1, 2, 3], [4, 5, 6]) == [5, 7, 9]
-
+assert reduce(mul, 2)([1, 2, 3]) == 12
 
 
 

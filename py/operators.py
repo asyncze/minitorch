@@ -63,6 +63,12 @@ def map(fn):
 def neg_list(ls):
     return map(neg)(ls)
 
+def map2(fn):
+    return lambda ls1, ls2: [fn(x, y) for x, y in zip(ls1, ls2)]
+
+def add_list(ls1, ls2):
+    return map2(add)(ls1, ls2)
+
 # tests
 
 assert mul(2, 3) == 6
@@ -85,4 +91,11 @@ assert is_close(sigmoid_back(2, 1), 0.11)
 
 assert map(neg)([1, 2, 3]) == [-1, -2, -3]
 assert neg_list([1, 2, 3]) == [-1, -2, -3]
+assert map2(add)([1, 2, 3], [4, 5, 6]) == [5, 7, 9]
+assert add_list([1, 2, 3], [4, 5, 6]) == [5, 7, 9]
+
+
+
+
+
 

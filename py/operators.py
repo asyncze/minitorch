@@ -78,6 +78,12 @@ def reduce(fn, start):
 
     return lambda ls: reduce_fn(ls, fn, start)
 
+def sum(ls):
+    return reduce(add, 0)(ls)
+
+def prod(ls):
+    return reduce(mul, 1)(ls)
+
 # tests
 
 assert mul(2, 3) == 6
@@ -103,6 +109,8 @@ assert neg_list([1, 2, 3]) == [-1, -2, -3]
 assert map2(add)([1, 2, 3], [4, 5, 6]) == [5, 7, 9]
 assert add_list([1, 2, 3], [4, 5, 6]) == [5, 7, 9]
 assert reduce(mul, 2)([1, 2, 3]) == 12
+assert sum([1, 2, 3]) == 6
+assert prod([2, 3, 4]) == 24
 
 
 

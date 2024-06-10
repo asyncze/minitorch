@@ -42,26 +42,26 @@ assert operators._relu(-3) == 0
 # map
 operators._map.restype = ctypes.POINTER(ctypes.c_double)
 operators._map.argtypes = [
-	ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
-	ctypes.POINTER(ctypes.c_double),
-	ctypes.c_int
+    ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double),
+    ctypes.POINTER(ctypes.c_double),
+    ctypes.c_int
 ]
 
 def map_test_helper(fn, x):
-	CFuncType = ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double)
-	func = CFuncType(fn) # cast fn as CFuncType
+    CFuncType = ctypes.CFUNCTYPE(ctypes.c_double, ctypes.c_double)
+    func = CFuncType(fn) # cast fn as CFuncType
 
-	n = len(x)
+    n = len(x)
 
-	list_as_array = (ctypes.c_double * n)(*x)
-	result_ptr = operators._map(func, list_as_array, n)
+    list_as_array = (ctypes.c_double * n)(*x)
+    result_ptr = operators._map(func, list_as_array, n)
 
-	result = [result_ptr[i] for i in range(n)]
+    result = [result_ptr[i] for i in range(n)]
 
-	libc = ctypes.CDLL("libc.dylib")
-	libc.free(result_ptr)
+    libc = ctypes.CDLL("libc.dylib")
+    libc.free(result_ptr)
 
-	return result
+    return result
 
 assert map_test_helper(operators._neg, [1, 2, 3]) == [-1, -2, -3]
 assert map_test_helper(operators._relu, [1.0, -2.0, 3.0, -4.0, 5.0]) == [1.0, 0.0, 3.0, 0.0, 5.0]

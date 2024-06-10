@@ -1,3 +1,4 @@
 
 py/venv/*
 .DS_Store
+*.so

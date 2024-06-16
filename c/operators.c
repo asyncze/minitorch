@@ -5,7 +5,9 @@
 #include <stdio.h>
 #include <math.h>
 
-double epsilon = 1e-6;
+#ifndef EPSILON
+#define EPSILON 1e-6
+#endif
 
 // core mathematical operators
 
@@ -50,7 +52,7 @@ double _relu(double x) {
 }
 
 double _log(double x) {
-    return log(x + epsilon);
+    return log(x + EPSILON);
 }
 
 double _exp(double x) {
@@ -58,7 +60,7 @@ double _exp(double x) {
 }
 
 double _log_back(double x, double d) {
-    return d / (x + epsilon);
+    return d / (x + EPSILON);
 }
 
 double _inv(double x) {
